@@ -122,7 +122,7 @@ RUN apt-get update && \
         libgsm1-dev \
         libgpgme-dev \
         flite-dev \
-        libdc1394-dev \
+        libdc1394-22-dev \
         libcaca-dev \
         libraw1394-dev \
         libavc1394-dev \
