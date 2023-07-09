@@ -11,14 +11,14 @@ cd $_HOME_
 
 if [ "$1""x" == "buildx" ]; then
     cp -a ../buildscripts .
-    docker build -f Dockerfile -t qtox_push_002 .
+    docker build -f Dockerfile_ub22 -t qtox_push_002_ub22 .
     exit 0
 fi
 
 cp -a ../.ci-scripts/build-qtox-linux.sh .
 
 build_for='
-ubuntu:18.04
+asan_ubuntu:22.04
 '
 
 for system_to_build_for in $build_for ; do
@@ -65,7 +65,7 @@ chmod a+rwx /artefacts/*
       -v $_HOME_/"$system_to_build_for"/script:/script \
       -v $_HOME_/"$system_to_build_for"/workspace:/workspace \
       --net=host \
-     "qtox_push_002" \
+     "qtox_push_002_ub22" \
      /bin/sh -c "apk add bash >/dev/null 2>/dev/null; /bin/bash /script/run.sh"
      if [ $? -ne 0 ]; then
         echo "** ERROR **:$system_to_build_for_orig"
