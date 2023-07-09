@@ -9,3 +9,4 @@ ubuntu_22.04/
 toxid_save/
 tox_data/
 debian_11/
+asan_ubuntu_22.04/
