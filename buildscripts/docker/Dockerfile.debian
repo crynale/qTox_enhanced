@@ -136,7 +136,7 @@ RUN apt-get update && \
         libcodec2-dev \
         libmfx-dev \
         libdrm-dev \
-        libopencl-clang-14-dev \
+        libopencl-clang-dev \
         ocl-icd-opencl-dev \
         liblzma-dev \
         && \
