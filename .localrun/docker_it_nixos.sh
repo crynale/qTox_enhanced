@@ -42,9 +42,9 @@ let
           src = fetchFromGitHub {
             owner = "zoff99";
             repo = "c-toxcore";
-            rev = "4eab66d6ceb3c8feeedbb8cb8d91f9fe557ac3d7";
+            rev = "ae177c15ebf6705b5a36240bb0a0a6bd15da39ed";
             fetchSubmodules = true;
-            sha256 = "sha256-sDbFpWt05e5VgrIFWsO9HIZxl/KKCv1z1JWc6Gq9wMg=";
+            sha256 = "sha256-W2KuHxPUsBwTeQytYpcHH+b+CWaKF9junSz2Hki8bNQ=";
           };
           patches = [
             /workspace/build/buildscripts/patches/tc___ftv2_capabilities.patch
