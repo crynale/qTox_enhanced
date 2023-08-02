@@ -31,6 +31,10 @@ fi
 CFLAGS="${CROSS_CFLAG}" \
 CPPFLAGS="${CROSS_CPPFLAG}" \
 LDFLAGS="${CROSS_LDFLAG}" \
+
+#          --disable-avresample \
+#          --disable-lzo \
+
 ./configure ${FFMPEG_ARCH} \
           --enable-gpl \
           --enable-shared \
@@ -46,7 +50,6 @@ LDFLAGS="${CROSS_LDFLAG}" \
           --disable-doc \
           --disable-sdl2 \
           --disable-avfilter \
-          --disable-avresample \
           --disable-filters \
           --disable-iconv \
           --disable-network \
@@ -57,7 +60,6 @@ LDFLAGS="${CROSS_LDFLAG}" \
           --disable-dct \
           --disable-dwt \
           --disable-lsp \
-          --disable-lzo \
           --disable-mdct \
           --disable-rdft \
           --disable-fft \

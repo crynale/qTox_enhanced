@@ -186,7 +186,7 @@ jobs:
       - name: Get tag name for appimage release file name
         if: contains(github.ref, 'refs/tags/v')
         id: get_version
-        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+        run: echo "{VERSION}={$(echo $GITHUB_REF | cut -d / -f 3)}" >> $GITHUB_OUTPUT
       # The zync file names MUST match the pattern "qTox-*.x86_64.AppImage.zsync"
       # indefinitely for older versions to be able to update https://github.com/AppImage/AppImageSpec/blob/master/draft.md#github-releases
       - name: Rename appimage for release upload
@@ -247,7 +247,7 @@ jobs:
       - name: Get tag name for flatpak release file name
         if: contains(github.ref, 'refs/tags/v')
         id: get_version
-        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+        run: echo "{VERSION}={$(echo $GITHUB_REF | cut -d / -f 3)}" >> $GITHUB_OUTPUT
       - name: Rename flatpak for release upload
         if: contains(github.ref, 'refs/tags/v')
         run: |

@@ -30,6 +30,25 @@
 
 #include <tox/tox.h>
 
+#include <libavutil/avutil.h>
+
+#ifndef __STDC_VERSION__
+#define __STDC_VERSION__ 199401L
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpragmas"
+#pragma GCC diagnostic ignored "-Wunknown-pragmas"
+#pragma GCC diagnostic ignored "-Wpedantic"
+#pragma GCC diagnostic ignored "-Wextra"
+#pragma GCC diagnostic ignored "-Wall"
+#include <opus.h>
+// #undef __STDC_VERSION__ // <-- this causes a warning and therefore an error again
+#pragma GCC diagnostic pop
+#else
+#include <opus.h>
+#endif
+
+#include <sodium.h>
+
 #include <QDebug>
 #include <QDesktopServices>
 #include <QPushButton>
@@ -102,13 +121,23 @@ void AboutForm::replaceVersions()
     bodyUI->gitVersion->setText(
         tr("Commit hash: %1").arg(createLink(commitLink, QString(GIT_VERSION))));
 
+    char libavutil_version_str[2000];
+    memset(libavutil_version_str, 0, 2000);
+    snprintf(libavutil_version_str, 1999, "%d.%d.%d", (int)LIBAVUTIL_VERSION_MAJOR, (int)LIBAVUTIL_VERSION_MINOR, (int)LIBAVUTIL_VERSION_MICRO);
+
     bodyUI->toxCoreVersion->setText(tr("toxcore version: %1").arg(TOXCORE_VERSION));
     bodyUI->qtVersion->setText(QString("Qt compiled: ") +
         QString(QT_VERSION_STR) +
         QString(" / runtime: ") +
         QString::fromUtf8(qVersion()) +
         QString("\nSQLCipher: ") +
-        Widget::sqlcipher_version
+        Widget::sqlcipher_version +
+        QString("\nlibav: ") +
+        QString::fromUtf8(libavutil_version_str) +
+        QString("\nopus: ") +
+        QString::fromUtf8(opus_get_version_string()) +
+        QString("\nsodium: ") +
+        QString::fromUtf8(sodium_version_string())
         );
 
     qDebug() << "sqlcipher_version:" << Widget::sqlcipher_version;

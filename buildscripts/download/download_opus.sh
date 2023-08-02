@@ -17,12 +17,11 @@
 
 set -euo pipefail
 
-OPUS_VERSION=1.3.1
-# https://archive.mozilla.org/pub/opus/SHA256SUMS.txt
-OPUS_HASH=65b58e1e25b2a114157014736a3d9dfeaad8d41be1c8179866f144a2fb44ff9d
+OPUS_VERSION=1.4
+OPUS_HASH=c9b32b4253be5ae63d1ff16eea06b94b5f0f2951b7a02aceef58e3a3ce49c51f
 
 source "$(dirname "$(realpath "$0")")/common.sh"
 
 download_verify_extract_tarball \
-    "https://archive.mozilla.org/pub/opus/opus-${OPUS_VERSION}.tar.gz" \
+    "https://github.com/xiph/opus/releases/download/v1.4/opus-${OPUS_VERSION}.tar.gz" \
     "${OPUS_HASH}"
